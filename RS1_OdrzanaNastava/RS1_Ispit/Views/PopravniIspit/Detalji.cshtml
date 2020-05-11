@@ -1,0 +1,47 @@
+﻿@model DetaljiVM
+@{
+    ViewData["Title"] = "Detalji";
+}
+
+<h2>Detalji</h2>
+@*<input id="popravniId" value=" @Model.PopravniIspitID" type="hidden" />*@
+
+<div class="form-group">
+    <label>Predmet: </label>
+    <input asp-for="Predmet" class="form-control" disabled />
+</div>
+
+<div class="form-group">
+    <label>Razred: </label>
+    <input asp-for="Razred" class="form-control" disabled />
+</div>
+
+<div class="form-group">
+    <label>Datum: </label>
+    <input asp-for="DatumIspita" class="form-control" disabled />
+</div>
+
+
+<div class="form-group">
+    <label>Skola: </label>
+    <input asp-for="Skola" class="form-control" disabled />
+</div>
+
+<div class="form-group">
+    <label>Skolska godina: </label>
+    <input asp-for="SkolskaGodina" class="form-control" disabled />
+</div>
+
+<div id="ajaxDiv">
+
+</div>
+<script>
+
+    $.ajax({
+        url: "@Url.Action("IndexAjaxPrikaz", "AjaxPrikaz", new { PopravniIspitID = Model.PopravniIspitID })",
+        type: "get",
+        success: function (data) {
+            $("#ajaxDiv").html(data);
+        }
+    })
+</script>

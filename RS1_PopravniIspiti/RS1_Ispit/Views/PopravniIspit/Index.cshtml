@@ -1,0 +1,33 @@
+﻿@model RS1_Ispit_asp.net_core.ViewModels.PopravniIspitIndexVM
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Korisnik može odabrati školsku godinu, školu i predmet</h2>
+
+<form asp-action="/Prikazi/" >
+
+    <div class="form-group">
+        <label>Školska godina: </label>
+        <select asp-for="SkolskaGodinaId" asp-items="@Model.SkolskaGodina" class="form-control"></select>
+    </div>
+
+    <div class="form-group">
+        <label>Škola: </label>
+        <select asp-for="SkolaId" asp-items="@Model.Skola" class="form-control"></select>
+
+    </div>
+
+    <div class="form-group">
+        <label>Predmet: </label>
+        <select asp-for="PredmetId" asp-items="@Model.Predmet" class="form-control"></select>
+
+    </div>
+
+    <button>Odaberi</button>
+
+
+</form>
+
+
+@*<a href="/PopravniIspit/Prikazi/?skolskagodinaId=@Model.SkolskaGodinaId&skolaId=@Model.SkolaId&predmetId=@Model.PredmetId" class="btn btn-info">Odaberi</a>*@

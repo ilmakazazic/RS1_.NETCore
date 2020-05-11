@@ -1,0 +1,37 @@
+﻿@model PrikazPopravnihVM
+@{
+    ViewData["Title"] = "Prikaz";
+}
+
+<h2>Prikaz popravnih</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Skola</th>
+            <th>Skolska godina</th>
+            <th>Datum popravnog</th>
+            <th>Broj ucenika na popravnom</th>
+            <th>Broj polozenih</th>
+            <th>Akcija</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var x in Model.Popravni)
+        {
+        <tr>
+            <td>@x.Skola</td>
+            <td>@x.SkolskaGodina</td>
+            <td>@x.DatumPopravnog</td>
+            <td>@x.BrojUcenika</td>
+            <td>@x.BrojPolozenih</td>
+
+            <td><a asp-action="Detalji" asp-controller="PopravniIspit" asp-route-PopravniIspitID="@x.PopravniIspitId"><button class="btn">Detalji</button></a></td>
+
+        </tr>
+
+        }
+    </tbody>
+</table>
+<a asp-action="Dodaj" asp-controller="PopravniIspit" asp-route-PredmetID="@Model.PredmetID"><button class="btn primary">Dodaj</button></a>

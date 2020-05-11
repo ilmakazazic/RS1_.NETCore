@@ -1,0 +1,42 @@
+﻿@model DodajIspitVM
+@{
+    ViewData["Title"] = "Detalji";
+}
+
+<h2>Detalji</h2>
+
+<input type="hidden" asp-for="AngazovanId" />
+<input type="hidden" asp-for="IspitniTerminId" />
+
+
+<label>Nastavnik: </label>
+<input asp-for="Nastavnik" class="form-control" readonly />
+
+<label>Predmet: </label>
+<input asp-for="Predmet" class="form-control" readonly />
+
+<label>Akademska godina: </label>
+<input asp-for="AkademskaGodina" class="form-control" readonly />
+
+<label>Datum: </label>
+<input asp-for="DatumIspita" type="date" class="form-control" readonly />
+
+<label>Napomena: </label>
+<input asp-for="Napomena" class="form-control" readonly />
+
+
+<div id="ajaxDiv">
+
+</div>
+
+<script>
+    $.ajax({
+        url: "@Url.Action("Index", "AjaxStavke")",
+        type: "get",
+        data: { IspitniTerminID: @Model.IspitniTerminId},
+        success: function (data) {
+            $("#ajaxDiv").html(data);
+        }
+
+    });
+</script>

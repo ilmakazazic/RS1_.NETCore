@@ -1,0 +1,50 @@
+﻿@model RS1_Ispit_asp.net_core.ViewModels.AjaxStavkeIndexVM
+@{
+    ViewData["Title"] = "Index";
+}
+
+<table class="table table-bordered">
+    <tr>
+        <td>Ucenik</td>
+        <td>Odjeljenje</td>
+        <td>Broj u dnevniku</td>
+        <td>Pristupio ispitu</td>
+        <td>Rezultat maturskog</td>
+        <td>Akcija</td>
+    </tr>
+
+    @foreach (var i in Model.Ucenici)
+    {
+        <tr>
+            <td>@i.Ucenik</td>
+            <td>@i.Odjeljenje</td>
+            <td>@i.BrojUDnevniku</td>
+            @if (i.Pristupio)
+            {
+                <td><a href="/AjaxStavke/UcenikJeOdsutan/@i.PopravniIspitUcenikId" ajax-pozix="da" ajax-rezultat="ajaxDiv" class="btn btn-success">DA</a></td>
+            }
+            else
+            {
+                if (i.RezultatPopravnog == 0)
+                {
+                    <td>Nema pravo pristupa</td>
+                }
+                else
+                {
+                    <td><a href="/AjaxStavke/UcenikJePrisutan/@i.PopravniIspitUcenikId" ajax-pozix="da" ajax-rezultat="ajaxDiv" class="btn btn-danger">NE</a></td>
+                }
+            }
+            @if (i.Pristupio)
+            {
+                <td>@i.RezultatPopravnog</td>
+                <td><a href="/AjaxStavke/Uredi/@i.PopravniIspitUcenikId" ajax-pozix="da" ajax-rezultat="ajaxDiv" class="btn btn-warning">Uredi</a></td>
+
+            }
+            else
+            {
+                <td></td>
+                <td></td>
+            }
+        </tr>
+    }
+</table>

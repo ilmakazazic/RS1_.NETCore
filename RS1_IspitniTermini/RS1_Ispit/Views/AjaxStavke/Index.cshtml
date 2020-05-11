@@ -1,0 +1,53 @@
+﻿@model AjaxUcenici
+
+<br />
+
+<div id="ajaxPoziv">
+
+</div>
+
+<br />
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Ucenik</th>
+            <th>Pristupio</th>
+            <th>Ocjena</th>
+            <th>Akcija</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var x in Model.ucenici)
+        {
+        <tr>
+            <td>@x.ImeUcenika</td>
+
+            @if (x.Pristupio)
+            {
+                <td>Pristupio</td>
+
+            }
+            else
+            {
+                <td>Nije pristupio</td>
+
+            }
+
+            <td>@x.Ocjena</td>
+
+            @if (x.Pristupio)
+            {
+                <td> </td>
+
+            }
+            else
+            {
+
+                <td><a asp-action="Detalji" asp-route-IspitUceniciID="@x.IspitUceniciId" ajax-poziv="da" ajax-rezultat="ajaxPoziv" class="btn btn-default">Detalji</a></td>
+
+            }
+
+        </tr>
+        }
+    </tbody>
+</table>

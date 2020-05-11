@@ -1,0 +1,43 @@
+﻿@model OdabirAngazovanVM
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<table class="table">
+
+    <thead>
+        <tr>
+            <th>Predmet</th>
+            <th>Akademska godina</th>
+            <th>Nastavnik</th>
+            <th>Br odrzanih casova</th>
+            <th>Br studenata na predmetu</th>
+            <th>Akcija</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var x in Model.sviPredmeti)
+        {
+        <tr>
+
+        
+                <td>@x.NazivPredmeta</td>
+
+            <td>@x.AkademskaGodina</td>
+            <td>@x.Nastavnik</td>
+            <td>@x.BrojPredmeta</td>
+            <td>@x.BrojStudenata</td>
+            <td><a asp-action="Ispitni" asp-controller="IspitniTermin" asp-route-AngazovanID="@x.AngazovanId" class="btn btn-success">Odaberi</a></td>
+
+
+        </tr>
+
+
+        }
+
+
+    </tbody>
+    </table>

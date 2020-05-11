@@ -1,0 +1,19 @@
+﻿@model RS1_Ispit_asp.net_core.ViewModels.AjaxStavkeDodajVM
+
+@{
+    ViewData["Title"] = "Dodaj";
+}
+
+<h2>Dodaj ucenika:</h2>
+
+<form asp-action="DodajSnimi" ajax-poziv="da" ajax-rezultat="ajaxDiv">
+    <input asp-for="PopravniIspitId" hidden />
+
+    <div class="form-group">
+        <label>Ucenici:</label>
+        <select asp-for="Id" asp-items="Model.Ucenici" class="form-control"></select>
+    </div>
+
+
+    <button>Snimi</button>
+</form>

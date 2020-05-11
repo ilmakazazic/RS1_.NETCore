@@ -1,0 +1,14 @@
+﻿@model AjaxOcjena
+
+    <form asp-action="Detalji" class="form-group">
+        <input type="hidden" asp-for="IspitUcenikId" />
+        <input type="hidden" asp-for="IspitniTerminId" />
+
+        <label>Ucenik: </label>
+        <input asp-for="ImeStudenta" class="form-control" readonly />
+
+        <label>Ocjena: </label>
+        <input asp-for="Ocjena" class="form-control" />
+
+        <button class="btn btn-success" type="submit">Snimi</button>
+    </form>

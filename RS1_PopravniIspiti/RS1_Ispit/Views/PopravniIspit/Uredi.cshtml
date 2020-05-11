@@ -1,0 +1,53 @@
+﻿@model RS1_Ispit_asp.net_core.ViewModels.PopravniIspitUrediVM
+@{
+    ViewData["Title"] = "Uredi";
+}
+
+<h2>Uredi popravni ispit</h2>
+
+<form asp-action="Uredi">
+
+
+
+
+    <div class="form-group">
+        <label>1. Član komisije:@Model.Komisija1 </label>
+    </div>
+
+    <div class="form-group">
+        <label>2. Član komisije: @Model.Komisija2</label>
+    </div>
+
+    <div class="form-group">
+        <label>3. Član komisije: @Model.Komisija3 </label>
+    </div>
+
+    <div class="form-group">
+        <label>Datum @Model.Datum </label>
+    </div>
+
+    <div class="form-group">
+        <label>Škola: @Model.Skola</label>
+    </div>
+    <div class="form-group">
+        <label>Školska godina: @Model.SkolskaGodina </label>
+    </div>
+    <div class="form-group">
+        <label>Predmet: @Model.Predmet</label>
+    </div>
+
+
+</form>
+
+
+<div id="ajaxDiv">
+
+</div>
+
+<script>
+    $.get("/AjaxStavke/Index/@Model.PopravniIspitId", function (data, status) {
+
+        $("#ajaxDiv").html(data);
+    });
+</script>
+

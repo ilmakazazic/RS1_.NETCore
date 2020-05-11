@@ -1,0 +1,27 @@
+﻿@model DodajIspitVM
+@{
+    ViewData["Title"] = "Dodaj";
+}
+
+<h2>Dodaj</h2>
+
+<form asp-action="Dodaj" class="form-group">
+    <input type="hidden" asp-for="AngazovanId" />
+
+    <label>Nastavnik: </label>
+    <input asp-for="Nastavnik" class="form-control" readonly />
+
+    <label>Predmet: </label>
+    <input asp-for="Predmet" class="form-control" readonly />
+
+    <label>Akademska godina: </label>
+    <input asp-for="AkademskaGodina" class="form-control" readonly />
+
+    <label>Datum: </label>
+    <input asp-for="DatumIspita" type="date" class="form-control" />
+
+    <label>Napomena: </label>
+    <input asp-for="Napomena" type="text" class="form-control" />
+
+    <button class="btn btn-success" type="submit">Snimi</button>
+</form>

@@ -1,0 +1,22 @@
+﻿@model RS1_Ispit_asp.net_core.EntityModels.PopravniIspitUcenik
+
+@{
+    ViewData["Title"] = "Uredi";
+}
+
+<form asp-action="Snimi" ajax-poziv="da" ajax-rezultat="ajaxDiv">
+    <input asp-for="PopravniIspitId" hidden />
+    <input asp-for="PopravniIspitUcenikId" hidden />
+
+    <div class="form-group">
+        <label>Ucenik: @Model.OdjeljenjeStavka.Ucenik.ImePrezime </label>
+    </div>
+    <div class="form-group">
+        <label>Ocjena: </label>
+        <input asp-for="RezultatPopravnogIspita" />
+    </div>
+
+    <button>Snimi</button>
+</form>
+
+

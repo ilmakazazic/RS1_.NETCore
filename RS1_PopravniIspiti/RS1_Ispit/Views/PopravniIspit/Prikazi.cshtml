@@ -1,0 +1,38 @@
+﻿@model RS1_Ispit_asp.net_core.ViewModels.PopravniIspitPrikaziVM
+@{
+    ViewData["Title"] = "Prikazi";
+}
+
+<h2>Prikaz popravnih ispita za predmet odabran u koraku 1</h2>
+
+<table class="table table-hover">
+    <tr>
+        <td>Datum</td>
+        <td>Predmet</td>
+        <td>Broj ucenika na popravnom</td>
+        <td>Broj ucenika koji su polozili popravni</td>
+        <td>Akcija</td>
+    </tr>
+    @foreach(var i in Model.PopravniIspiti)
+    {
+        <tr>
+            <td>@i.Datum.ToShortDateString()</td>
+            <td>@i.Predmet</td>
+            <td>@i.BrojUcenikaNaPopravnomIspitu</td>
+            <td>@i.BrojUcenikaKojiSuPolozili</td>
+          <td><a href="/PopravniIspit/Uredi/@i.PopravniIspitId">Uredi</a></td>
+        </tr>
+    }
+</table>
+
+
+
+<form asp-action="Dodaj">
+    <input asp-for="PredmetId" hidden />
+    <input asp-for="SkolskaGodinaId" hidden />
+    <input asp-for="SkolaId" hidden />
+
+    <button type="submit" class="btn btn-info">Dodaj</button>
+</form>
+
+

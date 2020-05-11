@@ -1,0 +1,60 @@
+﻿@model AjaxPrikazUceniciVM
+<table class="table">
+    <thead>
+        <tr>
+            <th>Ucenik</th>
+            <th>Razred</th>
+            <th>Broj u dnevniku</th>
+            <th>Pristupio</th>
+            <th>Rezultat maturskog</th>
+            <th>Akcija</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var x in Model.ucenici)
+        {
+        <tr>
+            <td>@x.Ucenik</td>
+            <td>@x.Odjeljenje</td>
+            <td>@x.BrojUdnevniku</td>
+            @if (x.Pristupio == true)
+            {
+                <td><a asp-action="UcenikJeOdsutan" asp-controller="AjaxPrikaz" asp-route-PopravniIspitID="@x.PopravniIspitUcenikID">DA</a></td>
+
+            }
+            else
+            {
+                <td><a asp-action="UcenikJePrisutan" asp-controller="AjaxPrikaz" asp-route-PopravniIspitID="@x.PopravniIspitUcenikID">NE</a></td>
+
+            }
+            <td>@x.RezultatMaturskog</td>
+
+            <td><button value="@x.PopravniIspitUcenikID" id="buttonDetalj" class="btn">Detalji</button></td>
+
+        </tr>
+
+        }
+    </tbody>
+</table>
+
+<div class="DodajDiv">
+
+</div>
+
+<script>
+    $("#buttonDetalj").click(function () {
+        var UcenikID = $(this).attr("value");
+                        alert(UcenikID);
+
+        $.ajax({
+            url: "@Url.Action("Dodaj", "AjaxPrikaz")",
+            type: "get",
+            data: { PopravniIspitUcenikID: UcenikID },
+            success: function (data) {
+                $(".DodajDiv").html(data);
+            }
+        });
+
+    });
+</script>

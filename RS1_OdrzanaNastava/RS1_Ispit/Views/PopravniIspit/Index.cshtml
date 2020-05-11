@@ -1,0 +1,28 @@
+﻿@model OdabirPredmetaVM
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Odabir predmeta</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Razred</th>
+            <th>Predmet</th>
+            <th>Akcija</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var x in Model.Predmeti)
+        {
+        <tr>
+            <td>@x.Razred</td>
+            <td>@x.Naziv</td>
+            <td><a  asp-action="Prikaz"  asp-controller="PopravniIspit" asp-route-PredmetID="@x.PredmetId"><button class="btn">Odabir</button></a></td>
+
+        </tr>
+
+        }
+    </tbody>
+</table>

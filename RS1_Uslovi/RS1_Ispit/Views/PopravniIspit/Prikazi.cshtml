@@ -1,0 +1,30 @@
+﻿@model RS1_Ispit_asp.net_core.ViewModels.PopravniIspitPrikaziVM
+
+@{
+    ViewData["Title"] = "Prikazi";
+}
+
+
+<table class="table table-bordered">
+    <tr>
+        <td>Datum popravnog ispita</td>
+        <td>Predmet</td>
+        <td>Broj ucenika na popravnom ispitu**</td>
+        <td>Broj ucenika koji su polozili**</td>
+        <td>Akcija</td>
+
+    </tr>
+    @foreach (var i in Model.PopravniIspiti)
+    {
+        <tr>
+            <td>@i.Datum.ToShortDateString()</td>
+            <td>@i.Predmet</td>
+            <td>@i.BrojUcenikaNaPopravnom</td>
+            <td>@i.BrojUcenikaKojiSuPolozili</td>
+            <td><a href="/PopravniIspit/Uredi/@i.Id">Uredi</a></td>
+        </tr>
+    }
+
+</table>
+
+<td><a href="/PopravniIspit/Dodaj/@Model.Id" class="btn btn-success">Dodaj</a></td>

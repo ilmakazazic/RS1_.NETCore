@@ -1,0 +1,48 @@
+﻿@model IspitniVM
+@{
+    ViewData["Title"] = "Ispitni";
+}
+
+<h2>Ispitni</h2>
+
+<input asp-for="Nastavnik" class="form-control" readonly />
+<input asp-for="Predmet" class="form-control" readonly />
+<input asp-for="AkademskaGodina" class="form-control" readonly />
+<br />
+<br />
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Datum</th>
+            <th>Nisu polozili</th>
+            <th>Prijavljeni</th>
+            <th>Evidentiran rezultat</th>
+            <th>Akcija</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var x in Model.Ispiti)
+        {
+        <tr>
+            <td>@x.DatumIspita</td>
+            <td>@x.Nepolozeni</td>
+            <td>@x.Prijavljeni</td>
+
+            @if (x.EvidentiranRezultat)
+            {
+                <td>DA</td>
+
+            }
+            else
+            {
+                <td>NE</td>
+
+            }
+            <td><a asp-action="Detalji" asp-controller="IspitniTermin" asp-route-IspitniTerminID="@x.IspitniTerminId" class="btn btn-default">Detalji</a></td>
+
+        </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-action="Dodaj" asp-controller="IspitniTermin" asp-route-AngazovanID="@Model.AngazovanId" class="btn btn-default" >Dodaj Ispit</a>

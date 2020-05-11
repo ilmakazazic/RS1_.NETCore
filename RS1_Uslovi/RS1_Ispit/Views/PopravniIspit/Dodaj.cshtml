@@ -1,0 +1,33 @@
+﻿@model RS1_Ispit_asp.net_core.ViewModels.PopravniIspitDodajVM
+
+@{
+    ViewData["Title"] = "Dodaj";
+}
+
+    <form asp-action="Snimi">
+        <input asp-for="Id" hidden/>
+
+        <div class="form-group">
+            <label>Predmeti: </label>
+            <select asp-for="PredmetId" asp-items="Model.Predmet" class="form-control"></select>
+        </div>
+
+        <div class="form-group">
+            <label>Datum ispita</label>
+            <input type="date" asp-for="Datum" />
+        </div>
+
+        <div class="form-group">
+            <label>Skola: @Model.Skola</label>
+        </div>
+
+        <div class="form-group">
+            <label>Skolska godina: @Model.SkolskaGodina</label>
+        </div>
+
+        <div class="form-grpup">
+            <label>Odjeljenje: @Model.Odjeljenje</label>
+        </div>
+
+        <button>Snimi</button>
+    </form>

@@ -1,0 +1,63 @@
+﻿@model RS1_Ispit_asp.net_core.ViewModels.AjaxStavkeIndexVM
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<table class="table table-hover">
+    <tr>
+        <td>Ucenik</td>
+        <td>Odjeljenje</td>
+        <td>Broj u dnevniku</td>
+        <td>Pristupio</td>
+        <td>Rezultat popravnog</td>
+        <td>Akcija</td>
+    </tr>
+    @foreach (var i in Model.Ucenici)
+    {
+        <tr>
+            <td>@i.Ucenik</td>
+            <td>@i.Odjeljenje</td>
+            <td>@i.BrojUDnevniku</td>
+            @if (i.PristupioIspitu)
+            {
+                <td><a href="/AjaxStavke/UcenikJeOdsutan/@i.UcenikId" ajax-poziv="da" ajax-rezultat="ajaxDiv" class=" btn btn-success">DA</a></td>
+            }
+            else
+            {
+            //mislim da mi ovaj dio nije bas najbolji i ne radi, ali to cu jos pogledati
+            if (i.RezultatPopravnog == null)
+            {
+                               <td>Nema pravo pristupa</td>
+            }
+            else
+            {
+                    <td><a href="/AjaxStavke/UcenikJePrisutan/@i.UcenikId" ajax-poziv="da" ajax-rezultat="ajaxDiv" class=" btn btn-danger">NE</a></td>
+
+            }
+            }
+            @if (i.PristupioIspitu)
+            {
+                <td>@i.RezultatPopravnog</td>
+                <td><a href="/AjaxStavke/Uredi/@i.UcenikId" ajax-poziv="da" ajax-rezultat="ajaxDiv" class=" btn btn-primary">Uredi</a></td>
+            }
+            else
+            {
+                <td></td>
+                <td></td>
+            }
+
+        </tr>
+    }
+</table>
+
+
+
+<td><a href="/AjaxStavke/Dodaj/@Model.PopravniIspitId" ajax-poziv="da" ajax-rezultat="ajaxDiv" class="btn btn-success">Dodaj ucenika</a></td>
+
+<br />
+<br />
+
+<td><a href="/PopravniIspit/Dodaj/@Model.PopravniIspitId" ajax-poziv="da" ajax-rezultat="ajaxDiv" class="btn btn-success">Dodaj popravni</a></td>
+
+@*//dodaj popravni ne radi jer mi tamo akcija prima tri id koja nemam u modelu AjaxStavkeIndexVM...*@
